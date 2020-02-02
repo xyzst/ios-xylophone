@@ -18,7 +18,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func keyPressed(_ sender: UIButton) {
-        print(playNote(sender.currentTitle!))
+        sender.alpha = 0.33
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+            self.playNote(sender.currentTitle!)
+            sender.alpha = 1.0
+        })
     }
     
     func playNote(_ note: String) -> Bool {
